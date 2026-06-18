@@ -1,6 +1,6 @@
 # repair-codex-computer-use-chrome
 
-一个用于 Windows Codex Desktop 的快速修复 skill，目标是把每次 10 分钟左右的 Computer Use / Chrome 插件修复流程压缩成一次可复用脚本。
+一个用于 Windows Codex Desktop 的快速修复 skill 可复用脚本，多个版本多次使用验证。
 
 它主要处理这些情况：
 
