@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Computer Use Repair"
+  short_description: "快速修复 Codex Chrome 和 Computer Use"
+  default_prompt: "Use $repair-codex-computer-use-chrome to repair Codex Chrome and Computer Use plugins on Windows."
