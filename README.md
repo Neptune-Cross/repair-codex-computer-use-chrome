@@ -15,7 +15,7 @@
 推荐直接克隆到 Codex skills 目录：
 
 ```powershell
-git clone https://github.com/haotian-T/repair-codex-computer-use-chrome.git "$env:USERPROFILE\.codex\skills\repair-codex-computer-use-chrome"
+git clone https://github.com/Neptune-Cross/repair-codex-computer-use-chrome.git "$env:USERPROFILE\.codex\skills\repair-codex-computer-use-chrome"
 ```
 
 如果已经存在同名目录，可以先备份或删除旧目录后再克隆。
