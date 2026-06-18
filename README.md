@@ -24,8 +24,6 @@ git clone https://github.com/Neptune-Cross/repair-codex-computer-use-chrome.git 
 
 ## 前置条件
 
-- Windows 版 Codex Desktop 已安装，并且当前 Windows 用户能访问 Codex 的本地目录。
-- Chrome 浏览器已安装。
 - Chrome 浏览器需要提前从 Chrome 插件商店安装并启用 Codex 扩展。脚本会修复 Native Messaging manifest、注册表项和本地 helper 路径，但不会替用户从插件商店安装扩展。
 - 当前用户需要能写入 `$env:USERPROFILE\.codex`、`$env:LOCALAPPDATA\OpenAI\extension`，以及当前用户注册表 `HKCU\Software\Google\Chrome\NativeMessagingHosts` 和 `HKCU\Software\Classes\codex`。
 - Codex Desktop 安装包或本地缓存里需要能找到 `openai-bundled` 插件资源。
