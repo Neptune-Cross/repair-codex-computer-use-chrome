@@ -268,9 +268,12 @@ function Test-ChromeScripts {
 
 $script:CodexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE '.codex' }
 $script:CodexHome = (Resolve-Path -LiteralPath $script:CodexHome).Path
-$engine = Join-Path $script:CodexHome 'skills\codex-windows-fast-patch\scripts\install-computer-use-local.ps1'
+$engine = Join-Path $PSScriptRoot 'install-computer-use-local.ps1'
 if (-not (Test-Path -LiteralPath $engine -PathType Leaf)) {
-  throw "missing repair engine: $engine"
+  $engine = Join-Path $script:CodexHome 'skills\codex-windows-fast-patch\scripts\install-computer-use-local.ps1'
+}
+if (-not (Test-Path -LiteralPath $engine -PathType Leaf)) {
+  throw "missing repair engine. Expected bundled engine at $PSScriptRoot\install-computer-use-local.ps1 or fallback engine at $engine"
 }
 
 $backupDir = New-BackupDir
@@ -283,6 +286,7 @@ reg export HKCU\Software\Classes\codex (Join-Path $backupDir 'codex-url-protocol
 
 $codexCli = Get-CodexCliPath
 Write-Step "using codex.exe: $codexCli"
+Write-Step "using repair engine: $engine"
 
 $nativeHostPreflight = $null
 if (-not $SkipChromeNativeHost) {
@@ -326,6 +330,7 @@ $result = [pscustomobject]@{
   ok = $true
   backupDir = $backupDir
   codexCli = $codexCli
+  repairEngine = $engine
   packageId = $packageId
   nativeHostPreflight = if ($nativeHostPreflight) { $nativeHostPreflight.Text } else { $null }
   repair = $repair.Text

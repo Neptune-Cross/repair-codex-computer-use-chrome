@@ -19,6 +19,14 @@ The script uses environment variables and local discovery instead of hard-coded 
 - `$env:LOCALAPPDATA`
 - the newest user-local `OpenAI\Codex\bin\*\codex.exe`
 - the current `OpenAI.Codex_*` AppX package from registry or `C:\Program Files\WindowsApps`
+- the bundled `scripts/install-computer-use-local.ps1` repair engine, with fallback to a locally installed `codex-windows-fast-patch` copy only if the bundled engine is missing
+
+## Preconditions
+
+- Windows Codex Desktop is installed for the current user.
+- Chrome is installed.
+- The Codex Chrome extension is already installed and enabled from the Chrome Web Store. The script repairs Native Messaging and local helper paths, but it does not install the browser extension from the store.
+- The current user can write to `$env:USERPROFILE\.codex`, `$env:LOCALAPPDATA\OpenAI\extension`, and the relevant `HKCU` registry keys.
 
 ## Workflow
 
@@ -32,7 +40,7 @@ The script uses environment variables and local discovery instead of hard-coded 
 
 - Runs `install-computer-use-local.ps1 -StrictVerifyOnly`.
 - On failure or `-ForceRepair`, runs `install-computer-use-local.ps1 -VerifyOnly`.
-- Rebuilds or verifies `openai-bundled` marketplace/cache through the existing fast-patch repair engine.
+- Rebuilds or verifies `openai-bundled` marketplace/cache through the bundled repair engine.
 - Ensures `computer-use`, `browser`, and `chrome` `latest` junctions point at stable cache directories.
 - Regenerates the Chrome Native Messaging manifest under `$env:LOCALAPPDATA\OpenAI\extension`.
 - Registers `HKCU\Software\Google\Chrome\NativeMessagingHosts\com.openai.codexextension`.
@@ -58,3 +66,4 @@ When `mcp__node_repl` is available after the script passes:
 - `manifest does not point at stable cache path`: the script rewrites it to the concrete Chrome cache version.
 - `native pipe path is unavailable` after disk checks pass: restart Codex Desktop and retest in a fresh conversation before rebuilding files again.
 - `Get-AppxPackage` is unavailable: the script uses registry and WindowsApps folder fallback discovery.
+- Chrome extension check reports not installed or disabled: ask the user to install or enable the Codex extension from the Chrome Web Store, then rerun the script.
