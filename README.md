@@ -2,8 +2,6 @@
 
 一个用于 Windows Codex Desktop 的快速修复 skill 可复用脚本，多个版本多次使用验证。
 
-这个仓库现在内置 `scripts/install-computer-use-local.ps1` 修复引擎，不再要求用户提前安装 `codex-windows-fast-patch` skill。
-
 它主要处理这些情况：
 
 - `computer-use@openai-bundled`、`browser@openai-bundled`、`chrome@openai-bundled` 无法安装、不可用或状态异常。
